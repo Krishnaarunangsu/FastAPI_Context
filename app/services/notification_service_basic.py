@@ -13,16 +13,19 @@ class NotificationService:
             request_data.type
         )
 
-        result = strategy.send(request_data)
+        result = strategy.send(
+            request_data.recipient,
+            request_data.message
+        )
 
-        # Context enrichment
+        # Tenant enrichment
         result["tenant"] = context["tenant"]
 
-        # Premium tenant logic
+        # Premium logic
         if context["tenant"] == "PREMIUM":
             result["premium_support"] = True
 
-        # Admin debug logic
+        # Admin logic
         if context["role"] == "ADMIN":
             result["debug"] = {
                 "strategy_used": request_data.type,

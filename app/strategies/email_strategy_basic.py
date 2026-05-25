@@ -1,16 +1,24 @@
 from app.strategies.base import NotificationStrategy
 
 
-class SMSStrategy(NotificationStrategy):
+class EmailStrategy(NotificationStrategy):
 
     def send(self, request_data):
 
         return {
+
             "status": "SUCCESS",
-            "channel": "SMS",
+
+            "channel": "EMAIL",
+
             "recipient": request_data.recipient,
-            "message": f"SMS sent: {request_data.message}",
+
+            "message": f"Email sent: {request_data.message}",
+
             "extra_context": {
-                "food": request_data.food
+
+                "weather": request_data.weather,
+
+                "color": request_data.color
             }
         }

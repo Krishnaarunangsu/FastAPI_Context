@@ -4,5 +4,5 @@ from abc import ABC, abstractmethod
 class NotificationStrategy(ABC):
 
     @abstractmethod
-    def send(self, request_data):
+    def send(self, recipient, message):
         pass
